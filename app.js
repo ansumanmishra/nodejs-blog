@@ -17,7 +17,7 @@ var admin = require('./routes/admin/index');
 var app = express();
 
 /* Database connection */
-mongoose.connect('mongodb://localhost/blog');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/blog');
 var db = mongoose.connection;
 if(db) {
 	console.log('successfully connected to the blog database');
