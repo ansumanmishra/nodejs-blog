@@ -1,0 +1,33 @@
+<% include header.ejs %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>Posts</h1>
+            <div class="new_post_block">
+                <a href="/post/new" class="new_post_link"><b>New Post</b></a>
+            </div>
+            <div>
+                <!-- template code -->
+				<% if(keyword) { %>
+                <p>Search Results for "<b><%= keyword %></b>": <a href="/post">clear filter </a></p>
+				<% } %>
+				<% if(posts.length < 1) { %>
+                <p>Sorry no record(s) found!</p>
+                <p><a href="/post"><b> Back to Posts </b></a></p>
+				<% } %>
+				<p>Total Number of posts: <%= posts.length %></p>
+				<% posts.forEach( function(post) { %>
+                <div class="post">
+                    <h3><a href="/post/<%= post.id %>"><%= post.title %></a></h3>
+					<% var postImage = (post.photo) ? '/uploads/'+post.photo : '/images/no-image.png'; %>
+                    <a href="/post/<%= post.id %>" class="post_image"><img src="<%= postImage %>" width="100" height="auto" /></a>
+                    <span class="author"><i><%= post.author %></i></span>
+                    <p><%= post.body %></p>
+                </div>
+				<% }) %>
+                </div>
+            </div>
+            <!-- /col-md-8 --><% include sidebar.ejs %>
+        </div>
+        <!-- /row -->
+    </div><% include footer.ejs %>

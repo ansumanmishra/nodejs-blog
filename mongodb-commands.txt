@@ -1,0 +1,7 @@
+Mongo DB Cheat Sheet
+====================
+Create database - use dbname
+Show all databases - show dbs
+Show all collections - show collections
+Delete Collection - db.getCollection("collection name").drop()
+Find all records = db.collectionName.find()

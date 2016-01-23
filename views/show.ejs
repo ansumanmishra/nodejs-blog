@@ -1,0 +1,54 @@
+<% include header.ejs %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <!-- template code -->
+            <div class="post">
+                <h3><a href="/post/<%= post.id %>"><%= post.title %></a></h3>
+				<% var postImage = (post.photo) ? '/uploads/'+post.photo : '/images/no-image.png'; %>
+                <a href="/post/<%= post.id %>" class="post_image"><img src="<%= postImage %>" width="100" height="auto" /></a>
+                    <span class="author"><i><%= post.author %></i></span>
+                    <p><%= post.body %></p>
+                </div>
+                <nav class="post-links">
+                    <ul>
+                        <li><a href="/post"><b>Back to Posts</b></a></li>
+                        <li><a href="/post/<%= post.id %>/edit"><b>Edit</b></a></li>
+                        <li>
+                            <form name="delete_post" method="post" action="/post/<%= post._id %>/delete">
+                                <input type="hidden" name="_method" value="DELETE" />
+                                <a href="#" onclick="document.delete_post.submit(); return false;" class="text-danger"><b>Delete</b></a>
+                            </form>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="comments_block">
+                    <h3>Comments (<%= comments.length %>)</h3>
+					<% if(comments.length > 0) { %>
+						<% comments.forEach(function(comment) { %>
+						<p class="comment_desc"><%= comment.comment_desc %></p>
+						<p class="comment_author"> - 
+							<i><%= comment.comment_author %></i> &nbsp;&nbsp; 
+							<a href="/post/<%= post._id %>/comment/<%= comment._id %>/delete" title="Delete comment">
+								<img src="/images/close.png" />
+							</a>
+						</p>
+						<% }) %>
+					<% } %>
+                    <form role="form" method="post" action="/post/<%= post.id %>/comment">
+                        <div class="form-group">
+                            <label for="comment_author">Title</label>
+                            <input type="text" class="form-control" id="comment_author" name="comment_author" placeholder="Your Name" />
+                        </div>
+                        <div class="form-group">
+                            <label for="comment_desc">Body</label>
+                            <textarea rows="12" class="form-control" id="comment_desc" name="comment_desc" placeholder="Your Comment"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-default">Add Comment</button>
+                    </form>
+                </div>
+            </div>
+            <!-- /col-md-8 --><% include sidebar.ejs %>
+        </div>
+        <!-- /row -->
+    </div><% include footer.ejs %>

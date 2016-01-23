@@ -1,0 +1,38 @@
+.new_post_block {
+	margin: 10px;
+	text-align: right;
+}
+
+.post, .post-links {
+	clear: both;
+}
+.post-links ul li {
+	list-style-type: none;
+	margin: 10px 0;
+}
+.post_image {
+	display: block;
+	float: left;
+	margin: 0 10px 10px 0;
+}
+.author {
+	margin-bottom: 10px;
+	display: block;
+	font-size: 14px;
+}
+/* Comments */
+.comments_block {
+	margin-top: 50px;
+	border: 1px solid #EAE9E9;
+	border-radius: 3px;
+	padding: 10px;
+}
+.comment_author {
+    font-size: 12px;
+    text-align: right;
+}
+.comment_desc {
+    font-size: 14px;
+    margin-top: 20px;
+}
+/* Comments */
